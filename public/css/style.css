@@ -1,0 +1,264 @@
+:root {
+  --color-primary: #333333;
+  --color-secondary: #666666;
+  --color-tertiary: #999999;
+  --color-accent-blue: #07b0f2; /* 強調色系列 */
+  --color-accent-green: #0da64f;
+  --color-accent-yellow: #f2b138;
+  --color-background: #ffffff;
+  --color-light: #f8f9fa;
+  --font-primary: "Noto Serif TC", serif; /*中文襯線字體，用於標題 */
+  --font-secondary: "Noto Sans TC", sans-serif;
+  --letter-spacing-zh: 0.05rem; /* 中文字間距 */
+  --line-height-zh: 1.8; /* 中文行高 */
+}
+
+/* 手機版和平板的響應式樣式 (螢幕寬度 ≤ 768px) */
+@media (max-width: 768px) {
+  /* 英雄區塊標題文字大小 */
+  .hero h1 { 
+      font-size: calc(1.8rem + 1.5vw) !important;  
+      /* 動態計算字體大小:
+         - 基礎大小 1.8rem (28.8px)
+         - 加上螢幕寬度的1.5%
+         - !important 確保覆蓋其他樣式 */
+  }
+  
+  /* 英雄區塊段落文字大小 */
+  .hero p {
+      font-size: calc(1rem + 0.5vw) !important;
+      /* 動態計算字體大小:
+         - 基礎大小 1rem (16px)
+         - 加上螢幕寬度的0.5%
+         - !important 確保覆蓋其他樣式 */
+  }
+}
+
+/* 平板和手機版的下拉選單樣式 (螢幕寬度 ≤ 990px) */
+@media (max-width: 990px) {
+  /* 下拉選單基本樣式 */
+  .dropdown-menu {
+      border: none;              /* 移除邊框 */
+      padding-left: 1.5rem;      /* 左側內邊距 */
+  }
+  
+  /* 向右對齊的下拉選單 */
+  .dropdown-menu-end {
+      position: static !important;  /* 強制使用靜態定位 */
+      margin-left: 1.5rem;         /* 左側外邊距 */
+  }
+}
+
+/* 卡片整體樣式設計 */
+.card {
+  position: relative;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+/* 圖片容器樣式 */
+.card-img-container {
+  position: relative;
+  padding-top: 75%;       /* 維持4:3圖片比例 */
+  overflow: hidden;       /* 隱藏溢出部分 */
+}
+
+/* 圖片基本樣式 */
+.card-img-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* 標題樣式 */
+.card-title {
+  transition: color 0.3s ease;
+}
+
+/* 箭頭圖標樣式 */
+.card a i {
+  transition: transform 0.3s ease;
+}
+
+/* 卡片懸停效果整合 */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+}
+
+.card:hover .card-img-container img {
+  transform: scale(1.1);
+}
+
+.card:hover .card-title {
+  color: var(--color-accent-green);
+}
+
+.card:hover a i {
+  transform: translateX(5px);
+}
+
+/* 全域套用中文字體 */
+body {
+  font-family: var(--font-primary);
+}
+
+/* 針對標題特別設定 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  letter-spacing: var(--letter-spacing-zh);
+}
+
+/* 針對段落文字設定 */
+p {
+  font-family: var(--font-primary);
+  line-height: var(--line-height-zh);
+  letter-spacing: var(--letter-spacing-zh);
+}
+
+.header
+{
+  padding: 10rem 5% 6rem;
+}
+
+/* 
+  导航栏底部 = 小阴影
+*/
+header.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.headerfoods
+{
+  width: 100%;
+  overflow: hidden;
+}
+
+.headerfoods img
+{
+  object-fit: cover;
+  width: 50%;
+}
+
+/* CSS 處理所有樣式和內容 */
+.country-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge-country {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.6rem;
+  background: white;
+  border-radius: 40px;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.badge-country::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+  background-size: cover;
+  background-position: center;
+}
+
+/* 
+  导航链接下 小横线动画效果
+  - 默认是看不见的 v
+  - 鼠标放上去的时候会从左到右展开 v 
+*/
+.nav-link::after {
+  content: normal;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent-blue);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* 各國家設定 */
+.badge-country[data-country="japan"]::before {
+  content: '日本';
+}
+.badge-country[data-country="japan"]::after {
+  background-image: url('../images/flag/japan.png');
+}
+
+.badge-country[data-country="korea"]::before {
+  content: '韓國';
+}
+.badge-country[data-country="korea"]::after {
+  background-image: url('../images/flag/korea.jpg');
+}
+
+.badge-country[data-country="thailand"]::before {
+  content: '泰國';
+}
+.badge-country[data-country="thailand"]::after {
+  background-image: url('../images/flag/thailand.png');
+}
+
+.badge-country[data-country="india"]::before {
+  content: '印度';
+}
+.badge-country[data-country="india"]::after {
+  background-image: url('../images/flag/india.jpg');
+}
+
+.badge-country[data-country="italy"]::before {
+  content: '義大利';
+}
+.badge-country[data-country="italy"]::after {
+  background-image: url('../images/flag/italy.jpg');
+}
+
+.badge-country[data-country="french"]::before {
+  content: '法國';
+}
+.badge-country[data-country="french"]::after {
+  background-image: url('../images/flag/french.jpg');
+}
+
+.badge-country[data-country="china"]::before {
+  content: '中國';
+}
+.badge-country[data-country="china"]::after {
+  background-image: url('../images/flag/china.jpg');
+}
+
+.badge-country[data-country="spanish"]::before {
+  content: '西班牙';
+}
+.badge-country[data-country="spanish"]::after {
+  background-image: url('../images/flag/spanish.jpg');
+}
+
+.badge-country[data-country="vietnam"]::before {
+  content: '越南';
+}
+.badge-country[data-country="vietnam"]::after {
+  background-image: url('../images/flag/vietnam.jpg');
+}
+
+.badge-country[data-country="maroc"]::before {
+  content: '摩洛哥';
+}
+.badge-country[data-country="maroc"]::after {
+  background-image: url('../images/flag/maroc.jpg');
+}

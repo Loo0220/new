@@ -1,0 +1,195 @@
+/* 全域樣式 */
+:root {
+  --color-primary: #1a1a1a;
+  --color-secondary: #666666;
+  --color-accent: #c42f2f;
+  --color-background: #ffffff;
+  --color-light: #f8f9fa;
+  --font-primary: "Noto Serif TC", serif;
+  --letter-spacing-zh: 0.05rem;
+  --line-height-zh: 1.8;
+}
+
+/* Header 樣式 */
+.header {
+  padding: 10rem 0 6rem;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/header-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+/* 卡片樣式 */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card-img-container {
+  overflow: hidden;
+  position: relative;
+  padding-top: 75%;
+}
+
+.card-img-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-img-container img {
+  transform: scale(1.1);
+}
+
+/* 技巧步驟樣式 */
+.steps {
+  counter-reset: step;
+}
+
+.step-item {
+  display: flex;
+  align-items: start;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: var(--color-light);
+  border-radius: 8px;
+}
+
+.step-number {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+/* 文化卡片樣式 */
+.culture-card-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: var(--color-accent);
+}
+
+.timeline li {
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.timeline li::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+/* 表單樣式 */
+.contact-form .form-control,
+.contact-form .form-select {
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.contact-form .btn-primary {
+  padding: 0.8rem;
+  background-color: var(--color-accent);
+  border: none;
+}
+
+.contact-form .btn-primary:hover {
+  background-color: darkred;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .culture-card-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .header {
+    padding: 8rem 0 4rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+/* 動畫類 */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 導航欄樣式 */
+.navbar {
+  transition: background-color 0.3s ease;
+}
+
+.navbar.scrolled {
+  background-color: rgba(255,255,255,0.95) !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.5rem 1rem;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}

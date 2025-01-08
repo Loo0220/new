@@ -1,0 +1,4 @@
+{"country":"vietnam","title":"越南魚露","text":"傳統東南亞發酵調味料，以鯷魚浸泡海鹽發酵而成的琥珀色液體","img":"/images/food/魚露.jpg","ingredients":[{"name":"鯷魚","description":"新鮮小鯷魚經過發酵製成，賦予濃郁鮮味","tips":["選用新鮮小鯷魚","控制鹽分比例","發酵時間要足夠"],"img":"/images/ingredients/anchovy.jpg"},{"name":"海鹽","description":"優質海鹽能確保發酵品質與味道","tips":["使用天然海鹽","鹽度要適中","避免雜質混入"],"img":"/images/ingredients/seasalt.jpg"}],"steps":[{"step":1,"title":"原料處理","description":"將鯷魚與海鹽充分拌勻","tools":["陶瓷缸","木製攪拌棒","濾網"]},{"step":2,"title":"發酵過程","description":"在適當溫度下進行長時間發酵","tools":["發酵缸","溫度計","密封蓋"]},{"step":3,"title":"過濾收集","description":"將發酵完成的液體過濾收集","tools":["過濾布","收集瓶","漏斗"]}],"_id":"A1bC2dEfGhIjKlMn"}
+{"country":"spanish","title":"藏紅花","text":"世界最昂貴的香料","img":"images/food/藏紅花.jpg","_id":"bapfOx6xAGYsusmA"}
+{"country":"french","title":"黑松露","text":"土地的黑色鑽石","img":"images/food/黑松露.jpg","_id":"gOyE53qpv7COrD2r"}
+{"country":"japan","title":"抹茶","text":"傳統茶道文化精髓","img":"images/food/抹茶.jpg","_id":"vaJjJvS0qoBn6Xme"}

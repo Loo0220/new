@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <!-- 設定文檔使用 UTF-8 字符編碼，支援中文等多語言字符 -->
+  <meta charset="UTF-8">
+
+  <!-- 設定響應式視圖配置：
+       width=device-width：視窗寬度等於設備寬度
+       initial-scale=1.0：初始縮放比例為1，不放大也不縮小 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 網頁標題，顯示在瀏覽器標籤頁上 -->
+  <title>Local Eats - 探索全球美食文化</title>
+
+  <!-- 引入 Bootstrap 5 的 CSS 框架，用於響應式布局和組件樣式 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- 引入 Font Awesome 圖標庫，提供豐富的圖標選擇 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- 引入 Google Fonts 的 Noto Serif TC 字體
+       weights: 400(正常)、500(中等)、600(半粗)、700(粗體) -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- 引入自定義的 CSS 文件，包含網站的特定樣式 -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- 引入 Vue.js 3 框架，用於實現網頁的動態功能 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.13/vue.global.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <!-- Navbar - 響應式導航欄 -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm py-2">
+    <div class="container">
+      <!-- Logo區域 -->
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <!-- fas - Font Awesome 實心圖示的基本 class；
+         fa-utensils - 餐具圖示的特定；
+         class me-2 - Bootstrap 的 margin 效果；
+         在右側增加間距 (margin-end)；
+         me 代表 margin-end（RTL 語言系統中會自動調整方向）；
+         2 代表間距大小（Bootstrap 的尺寸單位，約 0.5rem） -->
+        <i class="fas fa-utensils me-2"></i>
+        <span class="d-none d-sm-inline">Local Eats</span>
+        <span class="d-inline d-sm-none">LE</span>
+      </a>
+
+      <!-- 漢堡選單按鈕 -->
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- 導航選單+點哪跳哪~ -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto text-center">
+          <li class="nav-item">
+            <a class="nav-link px-3" href="#dishes">各國經典菜餚</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="#foodstuff">獨特食材</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="#culture">餐桌文化</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="#restaurants">餐廳介紹</a>
+          </li>
+          <!-- 地區探索下拉選單 -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle px-3" href="#" data-bs-toggle="dropdown">
+              地區探索
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <h6 class="dropdown-header">亞洲</h6>
+              </li>
+              <li><a class="dropdown-item" href="/asia/east">東亞</a></li>
+              <li><a class="dropdown-item" href="/asia/southeast">東南亞</a></li>
+              <li><a class="dropdown-item" href="/asia/south">南亞</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <h6 class="dropdown-header">歐洲</h6>
+              </li>
+              <li><a class="dropdown-item" href="/europe/west">西歐</a></li>
+              <li><a class="dropdown-item" href="/europe/east">東歐</a></li>
+          </li>
+          <li>
+            <h6 class="dropdown-header">美洲</h6>
+          </li>
+          <li><a class="dropdown-item" href="/america/west">北美</a></li>
+          <li><a class="dropdown-item" href="/america/east">南美</a></li>
+          <h6 class="dropdown-header">非洲</h6>
+          </li>
+          <li><a class="dropdown-item" href="/africa/west">北非</a></li>
+          <li><a class="dropdown-item" href="/africa/east">南非</a></li>
+          </li>
+          <li>
+            <h6 class="dropdown-header">大洋洲</h6>
+          </li>
+          <li><a class="dropdown-item" href="/africa/west">澳洲</a></li>
+          <li><a class="dropdown-item" href="/africa/east">太平洋群島</a></li>
+        </ul>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="header d-flex align-items-center text-center text-dark position-relative">
+    <div class="container px-4">
+      <div class="headerfoods"><img class="mb-4 foods1" src="images/1.png" alt=""></div>
+      <h1 class="display-3 fw-bold mb-4 headertext" style="font-size: 400%;">探索全球美食文化</h1>
+      <p class="lead mb-4 headertext" style="font-size: 200%;">Discover the World Through Local Cuisines</p>
+      <div class="headerfoods"><img class="mb-4 foods2" src="images/2.png" alt=""></div>
+    </div>
+  </section>
+
+
+  <!-- 一個區段（section）標籤，設定上下內邊距（padding-y）為 5 個單位，背景為淺色 -->
+<section class="py-5 bg-light" id="about">
+  <!-- 容器 div，左右內邊距（padding-x）為 4 個單位 -->
+  <div class="container px-4">
+      <!-- 行（row）元素，設定網格間隙（gap）為 5 個單位，並垂直居中對齊項目 -->
+      <div class="row g-5 align-items-center">
+          <!-- 列（column）元素，在大屏幕上佔 4 格，中等屏幕上佔 6 格 -->
+          <div class="col-lg-4 col-md-6">
+              <!-- 創建一個 1:1 比例的容器，設定為相對定位 -->
+              <div class="ratio ratio-1x1 position-relative rounded-circle overflow-hidden shadow">
+            <img src="images/OIP.jpg" alt="作者照片" class="w-100 h-100 object-fit-cover">
+          </div>
+        </div>
+        <div class="col-lg-8 col-md-6">
+          <h2 class="display-6 mb-4">大家好，我是羅安琪</h2>
+          <div class="fs-6 lh-2">
+            <p>我一直對世界各地的飲食文化充滿熱情。</p>
+            <p>飲食是味覺的享受，更是每個地區歷史、風土與人文的縮影。</p>
+            <p>這次選擇「國際飲食文化」作為主題，希望能透過網站帶領使用者探索全球各地的美食故事。</p>
+            <p>網站將介紹各國經典菜餚、獨特食材與飲食習慣，包括推薦的在地餐廳！</p>
+            <p class="mb-0">讓大家在了解美味的同時，也能感受到背後的文化深度，拓展對不同飲食傳統的認識與尊重。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 菜餚區塊的主要容器 section -->
+  <section class="py-5" id="dishes"> <!-- py-5 代表上下padding為5個單位，id用於Vue綁定 -->
+    <!-- Bootstrap容器，提供左右邊距，px-4設定左右padding -->
+    <div class="container px-4">
+      <!-- 標題，置中對齊，下方margin 2個單位 -->
+      <h2 class="text-center mb-2">各國經典菜餚</h2>
+      <!-- 副標題，置中、灰色文字、下方margin 5個單位 -->
+      <p class="text-center text-muted mb-5">探索世界各地的傳統美食與當代創新料理</p>
+      <!-- Bootstrap的行容器，g-4設定卡片之間的間距 -->
+      <div class="row g-4">
+        <!-- Vue的循環指令，響應式布局：xl螢幕3格、lg螢幕4格、md螢幕6格 -->
+        <div v-for="item in Dishes" class="col-xl-3 col-lg-4 col-md-6">
+          <!-- 卡片容器：h-100確保等高、陰影、無邊框、圓角、隱藏溢出 -->
+          <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+            <!-- 圖片容器 -->
+            <div class="card-img-container">
+              <!-- 綁定圖片來源 -->
+              <img :src="item.img" class="card-img-top">
+              <!-- 國旗標籤的定位容器 -->
+              <div class="position-absolute top-0 end-0 m-3">
+                <!-- 國旗標籤樣式容器 -->
+                <div class="country-badges">
+                  <!-- 國旗標籤，動態綁定國家屬性 -->
+                  <span class="badge-country" :data-country="item.country"></span>
+                </div>
+              </div>
+            </div>
+            <!-- 卡片內容區域 -->
+            <div class="card-body">
+              <!-- 卡片標題，綁定title數據 -->
+              <h5 class="card-title">{{item.title}}</h5>
+              <!-- 卡片描述文字，灰色，綁定text數據 -->
+              <p class="card-text text-muted">{{item.text}}</p>
+              <!-- 連結：stretched-link使整個卡片可點擊、彈性布局對齊 -->
+              <a :href="'/recipe/' + item._id" class="stretched-link text-decoration-none d-flex align-items-center text-primary">
+                閱讀更多
+                <!-- Font Awesome箭頭圖標，左邊margin 2單位 -->
+                <i class="fas fa-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Foodstuff Section - 響應式菜餚卡片區 -->
+  <section class="py-5" id="foodstuff">
+    <div class="container px-4">
+      <h2 class="text-center mb-2">獨特食材</h2>
+      <p class="text-center text-muted mb-5">發現世界各地的特色食材及其應用</p>
+      <div class="row g-4">
+        <div v-for="item in foodstuff" class="col-xl-3 col-lg-4 col-md-6">
+          <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+            <div class="card-img-container">
+              <img :src="item.img" class="card-img-top">
+              <div class="position-absolute top-0 end-0 m-3">
+                <div class="country-badges">
+                  <span class="badge-country" :data-country="item.country"></span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{item.title}}</h5>
+              <p class="card-text text-muted">{{item.text}}</p>
+              <a href="#" class="stretched-link text-decoration-none d-flex align-items-center text-primary">
+                閱讀更多
+                <i class="fas fa-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- culture Section - 響應式菜餚卡片區 -->
+  <section class="py-5" id="culture">
+    <div class="container px-4">
+      <h2 class="text-center mb-2">餐桌文化</h2>
+      <p class="text-center text-muted mb-5">了解不同文化的飲食禮儀與傳統</p>
+      <div class="row g-4">
+        <div v-for="item in culture" class="col-xl-3 col-lg-4 col-md-6">
+          <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+            <div class="card-img-container">
+              <img :src="item.img" class="card-img-top">
+              <div class="position-absolute top-0 end-0 m-3">
+                <div class="country-badges">
+                  <span class="badge-country" :data-country="item.country"></span>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{item.title}}</h5>
+              <p class="card-text text-muted">{{item.text}}</p>
+              <a href="#" class="stretched-link text-decoration-none d-flex align-items-center text-primary">
+                閱讀更多
+                <i class="fas fa-arrow-right ms-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer - 響應式頁尾 -->
+  <footer class="bg-dark text-white py-5">
+    <div class="container px-4">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h4 class="h5 mb-3">關於 Local Eats</h4>
+          <p class="mb-0 text-white-50">分享全球美食文化的探索平台</p>
+        </div>
+        <div class="col-md-6">
+          <h4 class="h5 mb-3">聯繫方式</h4>
+          <p class="mb-0">
+            <a href="mailto:anqi32608@gmail.com" class="text-decoration-none text-white-50">
+              <i class="fas fa-envelope me-2"></i>anqi32608@gmail.com
+            </a>
+          </p>
+        </div>
+      </div>
+      <hr class="my-4 opacity-25">
+      <div class="text-center text-white-50">
+        <small>© 2024 Local Eats. All rights reserved.</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="js/bs5vue.js"></script>
+
+  <!-- 滾動視差 -->
+  <script>
+    gsap.to(".foods1", {
+      x: -700,
+      scrollTrigger: {
+        trigger: ".header",
+        start: "top 0px", //"top center", "10px 80%"
+        end: "bottom 100px",//"+=200"
+        toggleActions: "restart restart pause pause",//play, pause, resume, reverse, complete, restart, reset, or none.
+        scrub: 1,
+
+      }
+    })
+
+    gsap.to(".foods2", {
+      x: 800,
+      scrollTrigger: {
+        trigger: ".header",
+        start: "top 0px", //"top center", "10px 80%"
+        end: "bottom 100px",//"+=200"
+        toggleActions: "restart restart pause pause",//play, pause, resume, reverse, complete, restart, reset, or none.
+        scrub: 1,
+
+      }
+    })
+
+    gsap.to('.headertext', {
+            scrollTrigger: {
+                trigger: '.header',
+                start: 'top',
+                end: 'bottom',
+                scrub: true,
+                toggleActions: "restart restart pause pause"
+            },
+            fontSize: '50%'
+        });
+  </script>
+</body>
+
+</html>
